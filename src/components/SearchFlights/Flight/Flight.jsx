@@ -8,7 +8,7 @@ const getFormatDate = (date) => {
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December",
   ];
-  return `${("0" + date.getDay()).slice(-2)} ${monthNames[date.getMonth() - 1]}, ${date.getFullYear()}`;
+  return `${("0" + date.getDate()).slice(-2)} ${monthNames[date.getMonth() - 1]}, ${date.getFullYear()}`;
 };
 
 const getFormatTime = (seconds) => {

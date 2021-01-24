@@ -3,6 +3,8 @@ import React from "react";
 import classes from "./SearchFlights.module.css";
 import Flight from "./Flight/Flight";
 import { Scrollbar } from "react-scrollbars-custom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const getFormatDate = (date) => {
   const monthNames = [
@@ -19,9 +21,10 @@ const getFormatDate = (date) => {
     "ноября",
     "декабря",
   ];
-
-  return `${("0" + date.getDay()).slice(-2)} ${monthNames[date.getMonth() - 1]} ${date.getFullYear()}`;
+  return `${("0" + date.getDate()).slice(-2)} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
 };
+
+const CalendarButton = ({ onClick }) => <button className={classes.calendar} onClick={onClick}/>;
 
 const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites, deleteFromFavorites }) => {
 
@@ -39,7 +42,10 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites,
     </li>
   ));
 
-  console.log(departureDate);
+  const handleChangeDate = (date) => {
+    selectDateDeparture(date);
+  };
+
   return (
     <section className={classes.page}>
       <div className={classes.container}>
@@ -54,7 +60,11 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites,
             </div>
             <div className={classes.departureDateBlock}>
               <div className={classes.departureDate}>{getFormatDate(departureDate)}</div>
-              <button className={classes.calendar}/>
+              <DatePicker
+                selected={departureDate}
+                onChange={handleChangeDate}
+                customInput={<CalendarButton/>}
+              />
             </div>
           </div>
           <ul className={classes.pictures}>

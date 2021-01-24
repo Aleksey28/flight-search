@@ -11,7 +11,7 @@ const DELETE_FROM_FAVORITES = "DELETE_TO_FAVORITES";
 const initialState = {
   departureAirport: "SVO",
   arrivalAirport: "JFK",
-  departureDate: new Date(2020, 7, 7),
+  departureDate: new Date(2020, 6,7),
   pictures: [
     {
       id: 1,
@@ -109,7 +109,7 @@ const searchReducer = (state = initialState, action) => {
     case SELECT_DATE_DEPARTURE:
       return {
         ...state,
-        departureDate: action.value,
+        departureDate: action.date,
       };
     case ADD_TO_FAVORITES:
       return {
@@ -126,9 +126,9 @@ const searchReducer = (state = initialState, action) => {
   }
 };
 
-const selectDateDepartureAC = (value) => ({
+const selectDateDepartureAC = (date) => ({
   type: SELECT_DATE_DEPARTURE,
-  value,
+  date,
 });
 
 const addToFavoritesAC = (flightId) => ({
