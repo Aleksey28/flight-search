@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import LoginContainer from "../Login/LoginContainer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import SearchFlightsContainer from "../SearchFlights/SearchFlightsContainer";
 
 function App({logged}) {
   return (
@@ -12,7 +13,7 @@ function App({logged}) {
           <LoginContainer/>
         </Route>
         <ProtectedRoute exact path="/" logged={logged}>
-            base url
+          <SearchFlightsContainer />
         </ProtectedRoute>
       </Switch>
     </div>
