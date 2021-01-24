@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Login.module.css";
 import cn from "classnames";
 import { useFormik } from "formik";
+import { useHistory } from "react-router";
 
 const validate = (values) => {
   const errors = {};
@@ -26,10 +27,11 @@ const validate = (values) => {
 
 const Login = ({ pageLogin, setInput, setLogged }) => {
 
-  const onSubmit = (data) => {
+  const history = useHistory();
+
+  const onSubmit = () => {
     setLogged({ logged: true });
-    console.log(pageLogin);
-    console.log(data);
+    history.push('/');
   };
 
   const initialValues = {
