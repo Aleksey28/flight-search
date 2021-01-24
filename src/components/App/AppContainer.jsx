@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import App from "./App";
+import { setLoggedAC } from "../../redux/loginReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -7,8 +8,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return {};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setLogged: (value) => {
+      dispatch(setLoggedAC(value));
+    },
+  };
 };
 
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
