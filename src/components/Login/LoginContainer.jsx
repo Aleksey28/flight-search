@@ -1,4 +1,4 @@
-import { setInputAC } from "../../redux/loginReducer";
+import { setInputAC, setLoggedAC } from "../../redux/loginReducer";
 import { connect } from "react-redux";
 import Login from "./Login";
 
@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
     setInput: (value) => {
       dispatch(setInputAC(value));
     },
+    setLogged: (value) => {
+      dispatch(setLoggedAC(value));
+    }
   };
 };
 

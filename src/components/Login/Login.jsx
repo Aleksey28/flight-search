@@ -8,6 +8,10 @@ const validate = (values) => {
 
   if (!values.password) {
     errors.password = "Поле обязательно для заполнения.";
+  } else if (/[а-яё]/i.test(values.password)) {
+    errors.password = "В поле содержатся кирилица.";
+  } else if (values.password.length < 8) {
+    errors.password = `Количество символов в строке ${values.password.length}. Минимальное количество 8.`;
   }
 
   if (!values.email) {
@@ -20,9 +24,11 @@ const validate = (values) => {
   return errors;
 };
 
-const Login = ({ pageLogin, setInput }) => {
+const Login = ({ pageLogin, setInput, setLogged }) => {
 
   const onSubmit = (data) => {
+    setLogged({ logged: true });
+    console.log(pageLogin);
     console.log(data);
   };
 
