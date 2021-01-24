@@ -1,16 +1,16 @@
 import "./App.css";
 import React from "react";
 import { Route, Switch } from "react-router";
-import Login from "./components/Login/Login";
+import LoginContainer from "./components/Login/LoginContainer";
 
 function App() {
   return (
     <div className="page">
       <Switch>
-        <Route path={'/sign-in'}>
-          <Login />
+        <Route path={"/sign-in"}>
+          <LoginContainer/>
         </Route>
-        <Route path={'/'}>
+        <Route path={"/"}>
           base url
         </Route>
       </Switch>

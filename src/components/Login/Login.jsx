@@ -3,11 +3,6 @@ import classes from "./Login.module.css";
 import cn from "classnames";
 import { useFormik } from "formik";
 
-const initialValues = {
-  email: "",
-  password: "",
-};
-
 const validate = (values) => {
   const errors = {};
 
@@ -25,10 +20,15 @@ const validate = (values) => {
   return errors;
 };
 
-const Login = () => {
+const Login = ({ pageLogin, setInput }) => {
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const initialValues = {
+    email: pageLogin.email,
+    password: pageLogin.password,
   };
 
   const formik = useFormik({
@@ -36,6 +36,14 @@ const Login = () => {
     onSubmit,
     validate,
   });
+
+  const handleChangeInput = (e) => {
+    setInput({
+      name: e.target.name,
+      value: e.target.value,
+    });
+    formik.handleChange(e);
+  };
 
   return (
     <div className={classes.login}>
@@ -46,7 +54,7 @@ const Login = () => {
         <input id="email"
                name="email"
                type="email"
-               onChange={formik.handleChange}
+               onChange={handleChangeInput}
                value={formik.values.email}
                className={cn(classes.input, { [classes.input_error]: formik.errors.email })}/>
         {formik.errors.email
@@ -56,7 +64,7 @@ const Login = () => {
         <input id="password"
                name="password"
                type="password"
-               onChange={formik.handleChange}
+               onChange={handleChangeInput}
                value={formik.values.password}
                className={cn(classes.input, { [classes.input_error]: formik.errors.password })}/>
         {formik.errors.password
