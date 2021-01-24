@@ -37,7 +37,9 @@
   font-weight: 300;
   font-style: normal;
   line-height: 19px;
-  margin: 0 0 7px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
   color: #424242;
 }
 
@@ -49,14 +51,16 @@
   line-height: 19px;
   box-sizing: border-box;
   height: 34px;
-  margin: 0 0 25px;
+  margin: 7px 0 25px;
   padding: 0;
   color: #424242;
   border: 1px solid #c9cacc;
   border-radius: 4px;
+  outline: none;
 }
 
 .input_error {
+  margin-bottom: 3px;
   border: 1px solid #eb1717;
   box-shadow: 0 0 4px rgba(235, 23, 23, 0.2);
 }
@@ -68,6 +72,7 @@
   font-style: normal;
   line-height: 14px;
   color: #eb1717;
+  margin-bottom: 8px;
 }
 
 .button {
