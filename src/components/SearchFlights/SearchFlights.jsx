@@ -22,7 +22,7 @@ const getFormatDate = (date) => {
   return `${("0" + date.getDay()).slice(-2)} ${monthNames[date.getMonth() - 1]} ${date.getFullYear()}`;
 };
 
-const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites }) => {
+const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites, deleteFromFavorites }) => {
 
   const { departureAirport, arrivalAirport, departureDate, pictures, flights } = pageSearchFlights;
 
@@ -34,7 +34,7 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites 
 
   const flightsElements = flights.map(f => (
     <li key={f.id}>
-      <Flight data={f}/>
+      <Flight data={f}  addToFavorites = {addToFavorites} deleteFromFavorites={deleteFromFavorites}/>
     </li>
   ));
 

@@ -17,7 +17,16 @@ const getFormatTime = (seconds) => {
   return `${("00" + HH).slice(-2)}:${("00" + MM).slice(-2)}`;
 };
 
-const Flight = ({ data }) => {
+const Flight = ({ data, addToFavorites, deleteFromFavorites }) => {
+
+  const handleClickLike = () => {
+    if (data.favorite) {
+      deleteFromFavorites(data.id);
+    } else {
+      addToFavorites(data.id);
+    }
+  };
+
   return (
     <div className={classes.flight}>
       <div className={classes.leftSide}>
@@ -39,7 +48,7 @@ const Flight = ({ data }) => {
         </div>
       </div>
       <div className={classes.rightSide}>
-        <Like className={cn(classes.like, { [classes.like_active]: data.favorite })}/>
+        <Like className={cn(classes.like, { [classes.like_active]: data.favorite })} onClick={handleClickLike}/>
         <p className={classes.price}>
           Price: <span>{`${data.price.toLocaleString()} ${data.currency}`}</span>
         </p>
