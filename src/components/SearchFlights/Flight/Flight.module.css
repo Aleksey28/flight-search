@@ -1,0 +1,112 @@
+.flight {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftSide {
+  display: flex;
+}
+
+.picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 24px 0 12px;
+  border-radius: 50%;
+  background: rgba(0, 119, 255, 0.05);
+}
+
+.route {
+  font-family: 'SF Pro Display', 'Arial', 'Helvetica', sans-serif;
+  font-size: 17px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  letter-spacing: -0.408px;
+  color: #424242;
+}
+
+.arrow {
+  width: 12px;
+  height: 8px;
+  margin: 0 12px;
+  background-image: url('../../../images/arrow.svg');
+  background-size: cover;
+}
+
+.dataTime {
+  font-family: 'SF Pro Display', 'Arial', 'Helvetica', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  letter-spacing: -0.408px;
+  color: #878787;
+}
+
+.dataTime span {
+  width: 9px;
+  height: 1px;
+  margin: 0 10px;
+  border-radius: 2px;
+  background: #c4c4c4;
+}
+
+.airlineCompany {
+  font-family: 'SF Pro Display', 'Arial', 'Helvetica', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  margin: 0;
+  letter-spacing: -0.408px;
+  color: #878787;
+}
+
+.rightSide {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.price {
+  font-family: 'SF Pro Display', 'Arial', 'Helvetica', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 22px;
+  margin: 0;
+  letter-spacing: -0.408px;
+  color: #878787;
+}
+
+.price span {
+  font-family: 'SF Pro Display', 'Arial', 'Helvetica', sans-serif;
+  font-size: 17px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  margin-left: 8px;
+  letter-spacing: -0.408px;
+  color: #424242;
+}
+
+.like {
+  fill: none;
+  stroke: #878787;
+  cursor: pointer;
+}
+
+.like_active {
+  fill: #f04393;
+  stroke: none;
+}

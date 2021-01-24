@@ -1,5 +1,26 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
+import classes from "./SearchFlights.module.css";
+import Flight from "./Flight/Flight";
+
+const getFormatDate = (date) => {
+  const monthNames = [
+    "января",
+    "февраля",
+    "марта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря",
+  ];
+
+  return `${("0" + date.getDay()).slice(-2)} ${monthNames[date.getMonth() - 1]} ${date.getFullYear()}`;
+};
 
 const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites }) => {
 
@@ -13,48 +34,40 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites 
 
   const flightsElements = flights.map(f => (
     <li key={f.id}>
-      <img src={f.picture} alt="pictureesq"/>
-      <div>
-        <p>{f.departureAirport}-{f.arrivalAirport}</p>
-        <p>{f.departureDate.toString()} - {f.duration}</p>
-        <p>{f.airlineCompany}</p>
-      </div>
-      <div>
-        <div>
-          {f.favorite}
-        </div>
-        <p>
-          Price: <span>{`${f.price} ${f.currency}`}</span>
-        </p>
-      </div>
+      <Flight data={f}/>
     </li>
   ));
 
+  console.log(departureDate);
   return (
-    <div>
-      <div>
-        <div>
-          <div>
-            <NavLink to={"/"}>Вылеты</NavLink>
-            <NavLink to={"/"}>
-              {departureAirport} - {arrivalAirport}
-            </NavLink>
+    <section className={classes.page}>
+      <div className={classes.container}>
+        <div className={classes.header}>
+          <div className={classes.title}>
+            <div className={classes.breadCrumbs}>
+              <NavLink to={"/"} className={classes.link}>Вылеты</NavLink>
+              <div className={classes.corner}/>
+              <NavLink to={"/"} className={classes.link}>
+                {departureAirport} - {arrivalAirport}
+              </NavLink>
+            </div>
+            <div className={classes.departureDateBlock}>
+              <div className={classes.departureDate}>{getFormatDate(departureDate)}</div>
+              <button className={classes.calendar}/>
+            </div>
           </div>
-          <div>{departureDate.toString()}</div>
-        </div>
-        <div>
-          <ul>
+          <ul className={classes.pictures}>
             {picturesElements}
           </ul>
+          <p className={classes.favorites}>
+            Добавлено в Избранное: <span>{flights.filter(f => f.favorite).length}</span> рейсов
+          </p>
         </div>
-        <div>
-          <p>Добавлено в Избранное: <span>0</span> рейсов</p>
-          <ul>
-            {flightsElements}
-          </ul>
-        </div>
+        <ul className={classes.flights}>
+          {flightsElements}
+        </ul>
       </div>
-    </div>
+    </section>
   );
 };
 
