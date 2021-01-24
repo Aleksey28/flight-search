@@ -94,12 +94,12 @@ const selectDateDepartureAC = (value) => ({
   value,
 });
 
-const addToFavorites = (flightId) => ({
+const addToFavoritesAC = (flightId) => ({
   type: ADD_TO_FAVORITES,
   flightId,
 });
 
-const deleteFromFavorites = (flightId) => ({
+const deleteFromFavoritesAC = (flightId) => ({
   type: DELETE_FROM_FAVORITES,
   flightId,
 });
@@ -108,6 +108,6 @@ export default searchReducer;
 
 export {
   selectDateDepartureAC,
-  addToFavorites,
-  deleteFromFavorites,
+  addToFavoritesAC,
+  deleteFromFavoritesAC,
 };
