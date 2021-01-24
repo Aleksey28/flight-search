@@ -48,7 +48,7 @@ const Login = ({ pageLogin, setInput }) => {
   return (
     <div className={classes.login}>
 
-      <form onSubmit={formik.handleSubmit} className={classes.form}>
+      <form onSubmit={formik.handleSubmit} noValidate className={classes.form}>
         <h1 className={classes.title}>Simple Flight Check</h1>
         <label htmlFor="email" className={classes.label}> Логин: </label>
         <input id="email"
