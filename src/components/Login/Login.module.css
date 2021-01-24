@@ -11,13 +11,13 @@
 .form {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   width: calc(100% - 10px * 2);
   max-width: 410px;
   padding: 53px 32px 37px 33px;
   border-radius: 20px;
   background: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
 }
 
 .title {
@@ -56,6 +56,11 @@
   border-radius: 4px;
 }
 
+.input_error {
+  border: 1px solid #eb1717;
+  box-shadow: 0 0 4px rgba(235, 23, 23, 0.2);
+}
+
 .error {
   font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
   font-size: 12px;
@@ -71,14 +76,25 @@
   font-weight: normal;
   font-style: normal;
   line-height: 19px;
+  align-self: flex-end;
   width: 116px;
   height: 34px;
   padding: 0;
+  cursor: pointer;
   text-align: center;
   color: #fff;
   border: none;
   border-radius: 4px;
+  outline: none;
   background: linear-gradient(104.34deg, #3c4cad -15.34%, #00c3ff 145.95%);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
-  align-self: flex-end;
+}
+
+.button:hover {
+  box-shadow: 0 0 4px #99a0a3;
+}
+
+.button:active {
+  border: 1.5px solid rgba(29, 138, 216, 0.3);
+  background: linear-gradient(104.34deg, #5362be -15.34%, #4ad5ff 145.95%);
 }
