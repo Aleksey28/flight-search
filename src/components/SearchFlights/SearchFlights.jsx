@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import React from "react";
 import classes from "./SearchFlights.module.css";
 import Flight from "./Flight/Flight";
+import { Scrollbar } from "react-scrollbars-custom";
 
 const getFormatDate = (date) => {
   const monthNames = [
@@ -34,7 +35,7 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites,
 
   const flightsElements = flights.map(f => (
     <li key={f.id}>
-      <Flight data={f}  addToFavorites = {addToFavorites} deleteFromFavorites={deleteFromFavorites}/>
+      <Flight data={f} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites}/>
     </li>
   ));
 
@@ -63,9 +64,26 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites,
             Добавлено в Избранное: <span>{flights.filter(f => f.favorite).length}</span> рейсов
           </p>
         </div>
-        <ul className={classes.flights}>
-          {flightsElements}
-        </ul>
+        <Scrollbar
+          trackYProps={{
+            renderer: (props) => {
+              const { elementRef, ...restProps } = props;
+              restProps.style = {};
+              return <span {...restProps} ref={elementRef} className={classes.scroll_type_track}/>;
+            },
+          }}
+          thumbYProps={{
+            renderer: (props) => {
+              const { elementRef, ...restProps } = props;
+              restProps.style = {};
+              return <div {...restProps} ref={elementRef} className={classes.scroll_type_thumb}/>;
+            },
+          }}
+        >
+          <ul className={classes.flights}>
+            {flightsElements}
+          </ul>
+        </Scrollbar>
       </div>
     </section>
   );
