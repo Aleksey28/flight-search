@@ -14,10 +14,11 @@ function* fetchQuotes(action) {
   try {
     const { date, departureAirport, arrivalAirport } = action.data;
     const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + date.getMonth() + 1).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = date.getFullYear();
     const baseUrl = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com";
     const relativeUrl = "apiservices/browsequotes/v1.0/US/RUB/en-US";
+    debugger;
     const data = yield call(() => {
       return fetch(
         `${baseUrl}/${relativeUrl}/${departureAirport}-sky/${arrivalAirport}-sky/${year}-${month}-${day}`,
