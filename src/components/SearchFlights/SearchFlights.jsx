@@ -5,6 +5,9 @@ import Flight from "./Flight/Flight";
 import { Scrollbar } from "react-scrollbars-custom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+// import AliceCarousel from "react-alice-carousel";
+// import "react-alice-carousel/lib/alice-carousel.css";
+import Carousel from "nuka-carousel";
 
 const getFormatDate = (date) => {
   const monthNames = [
@@ -31,9 +34,12 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites,
   const { departureAirport, arrivalAirport, departureDate, pictures, flights } = pageSearchFlights;
 
   const picturesElements = pictures.map(p => (
-    <li key={p.id}>
-      <img src={p.url} alt="place"/>
-    </li>
+    <img
+      key={p.id}
+      src={p.url}
+      className={classes.picture}
+      alt="place"
+    />
   ));
 
   const flightsElements = flights.map(f => (
@@ -67,9 +73,16 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites,
               />
             </div>
           </div>
-          <ul className={classes.pictures}>
+          <Carousel
+            slidesToShow={3}
+            cellSpacing={12}
+            slideWidth={0.85}
+            withoutControls={true}
+            wrapAround={true}
+            opacityScale={0.65}
+          >
             {picturesElements}
-          </ul>
+          </Carousel>
           <p className={classes.favorites}>
             Добавлено в Избранное: <span>{flights.filter(f => f.favorite).length}</span> рейсов
           </p>

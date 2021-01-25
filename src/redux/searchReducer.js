@@ -29,6 +29,10 @@ const initialState = {
       id: 4,
       url: place4,
     },
+    {
+      id: 5,
+      url: place2,
+    },
   ],
   flights: [
     {
