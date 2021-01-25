@@ -5,7 +5,7 @@ import Exit from "../icons/Exit";
 const Header = ({ setLogged }) => {
 
   const handleClickOnButton = () => {
-    setLogged(false);
+    setLogged({ logged: false });
   };
 
   return (
