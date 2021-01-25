@@ -1,0 +1,25 @@
+.header {
+  padding-top: 26px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-align: right;
+  letter-spacing: -0.408px;
+  color: #1157a7;
+  border: none;
+  background: none;
+}
+
+.button svg {
+  margin-left: 20px;
+}
