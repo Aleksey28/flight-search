@@ -8,12 +8,17 @@
     "@testing-library/user-event": "^12.6.2",
     "classnames": "^2.2.6",
     "formik": "^2.2.6",
+    "moment": "^2.29.1",
+    "nuka-carousel": "^4.7.5",
     "react": "^17.0.1",
+    "react-datepicker": "^3.4.1",
+    "react-dates": "^21.8.0",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-scrollbars-custom": "^4.0.25",
     "redux": "^4.0.5",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"
@@ -41,5 +46,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

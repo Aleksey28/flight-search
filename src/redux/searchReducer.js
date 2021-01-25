@@ -11,7 +11,7 @@ const DELETE_FROM_FAVORITES = "DELETE_TO_FAVORITES";
 const initialState = {
   departureAirport: "SVO",
   arrivalAirport: "JFK",
-  departureDate: new Date(2020, 7, 7),
+  departureDate: new Date(2020, 6,7),
   pictures: [
     {
       id: 1,
@@ -29,14 +29,21 @@ const initialState = {
       id: 4,
       url: place4,
     },
+    {
+      id: 5,
+      url: place2,
+    },
   ],
   flights: [
     {
       id: 1,
       picture: plane,
       departureAirport: "SVO",
+      departureAirportName: "Moscow",
       arrivalAirport: "JFK",
+      arrivalAirportName: "New York City",
       departureDate: new Date(2020, 7, 7),
+      duration: 5000,
       airlineCompany: "Aeroflot",
       price: 23924,
       currency: "₽",
@@ -46,8 +53,11 @@ const initialState = {
       id: 2,
       picture: plane,
       departureAirport: "SVO",
+      departureAirportName: "Moscow",
       arrivalAirport: "JFK",
+      arrivalAirportName: "New York City",
       departureDate: new Date(2020, 7, 7),
+      duration: 5000,
       airlineCompany: "Aeroflot",
       price: 23924,
       currency: "₽",
@@ -57,8 +67,39 @@ const initialState = {
       id: 3,
       picture: plane,
       departureAirport: "SVO",
+      departureAirportName: "Moscow",
       arrivalAirport: "JFK",
+      arrivalAirportName: "New York City",
       departureDate: new Date(2020, 7, 7),
+      duration: 5000,
+      airlineCompany: "Aeroflot",
+      price: 23924,
+      currency: "₽",
+      favorite: true,
+    },
+    {
+      id: 4,
+      picture: plane,
+      departureAirport: "SVO",
+      departureAirportName: "Moscow",
+      arrivalAirport: "JFK",
+      arrivalAirportName: "New York City",
+      departureDate: new Date(2020, 7, 7),
+      duration: 5000,
+      airlineCompany: "Aeroflot",
+      price: 23924,
+      currency: "₽",
+      favorite: false,
+    },
+    {
+      id: 5,
+      picture: plane,
+      departureAirport: "SVO",
+      departureAirportName: "Moscow",
+      arrivalAirport: "JFK",
+      arrivalAirportName: "New York City",
+      departureDate: new Date(2020, 7, 7),
+      duration: 5000,
       airlineCompany: "Aeroflot",
       price: 23924,
       currency: "₽",
@@ -72,7 +113,7 @@ const searchReducer = (state = initialState, action) => {
     case SELECT_DATE_DEPARTURE:
       return {
         ...state,
-        departureDate: action.value,
+        departureDate: action.date,
       };
     case ADD_TO_FAVORITES:
       return {
@@ -89,17 +130,17 @@ const searchReducer = (state = initialState, action) => {
   }
 };
 
-const selectDateDepartureAC = (value) => ({
+const selectDateDepartureAC = (date) => ({
   type: SELECT_DATE_DEPARTURE,
-  value,
+  date,
 });
 
-const addToFavorites = (flightId) => ({
+const addToFavoritesAC = (flightId) => ({
   type: ADD_TO_FAVORITES,
   flightId,
 });
 
-const deleteFromFavorites = (flightId) => ({
+const deleteFromFavoritesAC = (flightId) => ({
   type: DELETE_FROM_FAVORITES,
   flightId,
 });
@@ -108,6 +149,6 @@ export default searchReducer;
 
 export {
   selectDateDepartureAC,
-  addToFavorites,
-  deleteFromFavorites,
+  addToFavoritesAC,
+  deleteFromFavoritesAC,
 };
