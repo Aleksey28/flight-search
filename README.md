@@ -35,3 +35,7 @@ npm run start
 ## Ссылка на GitHub Pages
 
 https://aleksey28.github.io/flight-search/
+
+## Ссылка на Heroku
+
+https://flight-search-number-one.herokuapp.com/
