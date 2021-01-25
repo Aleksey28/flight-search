@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./SearchFlights.module.css";
 import Flight from "./Flight/Flight";
 import { Scrollbar } from "react-scrollbars-custom";
@@ -29,7 +29,7 @@ const getFormatDate = (date) => {
 
 const CalendarButton = ({ onClick }) => <button className={classes.calendar} onClick={onClick}/>;
 
-const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites, deleteFromFavorites }) => {
+const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites, deleteFromFavorites, fetchQuotes }) => {
 
   const { departureAirport, arrivalAirport, departureDate, pictures, flights } = pageSearchFlights;
 
@@ -50,7 +50,20 @@ const SearchFlights = ({ pageSearchFlights, selectDateDeparture, addToFavorites,
 
   const handleChangeDate = (date) => {
     selectDateDeparture(date);
+    fetchQuotes({
+      date,
+      departureAirport,
+      arrivalAirport,
+    });
   };
+
+  useEffect(() => {
+    fetchQuotes({
+      date: new Date(),
+      departureAirport: "SVO",
+      arrivalAirport: "JFK",
+    });
+  }, [fetchQuotes]);
 
   return (
     <section className={classes.page}>

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { addToFavoritesAC, deleteFromFavoritesAC, selectDateDepartureAC } from "../../redux/searchReducer";
 import SearchFlights from "./SearchFlights";
+import { fetchQuotesAC } from "../../redux/sagas";
 
 const mapStateToProps = (state) => {
   return {
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
     deleteFromFavorites: (flightId) => {
       dispatch(deleteFromFavoritesAC(flightId));
     },
+    fetchQuotes: (date) => {
+      dispatch(fetchQuotesAC(date))
+    }
   };
 };
 
