@@ -7,11 +7,13 @@ import plane from "../images/plane.svg";
 const SELECT_DATE_DEPARTURE = "SELECT_DATE_DEPARTURE";
 const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
 const DELETE_FROM_FAVORITES = "DELETE_TO_FAVORITES";
+const QUOTES_FETCH_SUCCEEDED = "QUOTES_FETCH_SUCCEEDED";
+const QUOTES_FETCH_FAILED = "QUOTES_FETCH_FAILED";
 
 const initialState = {
   departureAirport: "SVO",
   arrivalAirport: "JFK",
-  departureDate: new Date(2020, 6,7),
+  departureDate: new Date(),
   pictures: [
     {
       id: 1,
@@ -34,78 +36,7 @@ const initialState = {
       url: place2,
     },
   ],
-  flights: [
-    {
-      id: 1,
-      picture: plane,
-      departureAirport: "SVO",
-      departureAirportName: "Moscow",
-      arrivalAirport: "JFK",
-      arrivalAirportName: "New York City",
-      departureDate: new Date(2020, 7, 7),
-      duration: 5000,
-      airlineCompany: "Aeroflot",
-      price: 23924,
-      currency: "₽",
-      favorite: true,
-    },
-    {
-      id: 2,
-      picture: plane,
-      departureAirport: "SVO",
-      departureAirportName: "Moscow",
-      arrivalAirport: "JFK",
-      arrivalAirportName: "New York City",
-      departureDate: new Date(2020, 7, 7),
-      duration: 5000,
-      airlineCompany: "Aeroflot",
-      price: 23924,
-      currency: "₽",
-      favorite: false,
-    },
-    {
-      id: 3,
-      picture: plane,
-      departureAirport: "SVO",
-      departureAirportName: "Moscow",
-      arrivalAirport: "JFK",
-      arrivalAirportName: "New York City",
-      departureDate: new Date(2020, 7, 7),
-      duration: 5000,
-      airlineCompany: "Aeroflot",
-      price: 23924,
-      currency: "₽",
-      favorite: true,
-    },
-    {
-      id: 4,
-      picture: plane,
-      departureAirport: "SVO",
-      departureAirportName: "Moscow",
-      arrivalAirport: "JFK",
-      arrivalAirportName: "New York City",
-      departureDate: new Date(2020, 7, 7),
-      duration: 5000,
-      airlineCompany: "Aeroflot",
-      price: 23924,
-      currency: "₽",
-      favorite: false,
-    },
-    {
-      id: 5,
-      picture: plane,
-      departureAirport: "SVO",
-      departureAirportName: "Moscow",
-      arrivalAirport: "JFK",
-      arrivalAirportName: "New York City",
-      departureDate: new Date(2020, 7, 7),
-      duration: 5000,
-      airlineCompany: "Aeroflot",
-      price: 23924,
-      currency: "₽",
-      favorite: false,
-    },
-  ],
+  flights: [],
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -124,6 +55,35 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         flights: state.flights.map(f => f.id === action.flightId ? { ...f, favorite: false } : f),
+      };
+    case QUOTES_FETCH_SUCCEEDED:
+      return {
+        ...state,
+        flights: action.data.Quotes.map(q => {
+          const departureAirport = action.data.Places.find(p => q.OutboundLeg.OriginId === p.PlaceId);
+          const arrivalAirport = action.data.Places.find(p => q.OutboundLeg.DestinationId === p.PlaceId);
+          const airlineCompany = action.data.Carriers.find(c => q.OutboundLeg.CarrierIds[0] === c.CarrierId);
+          const currency = action.data.Currencies[0];
+          return {
+            id: q.QuoteId,
+            picture: plane,
+            departureAirport: departureAirport.IataCode,
+            departureAirportName: departureAirport.CityName,
+            arrivalAirport: arrivalAirport.IataCode,
+            arrivalAirportName: arrivalAirport.CityName,
+            departureDate: new Date(q.QuoteDateTime),
+            duration: 10000,
+            airlineCompany: airlineCompany.Name,
+            price: q.MinPrice,
+            currency: currency.Symbol,
+            favorite: false,
+          };
+        }),
+      };
+    case QUOTES_FETCH_FAILED:
+      return {
+        ...state,
+        flights: [],
       };
     default:
       return state;
@@ -145,10 +105,23 @@ const deleteFromFavoritesAC = (flightId) => ({
   flightId,
 });
 
+const quotesFetchSucceededAC = (data) => ({
+  type: QUOTES_FETCH_SUCCEEDED,
+  data,
+});
+
+const quotesFetchFailedAC = (error) => ({
+  type: QUOTES_FETCH_FAILED,
+  error,
+});
+
 export default searchReducer;
 
 export {
   selectDateDepartureAC,
   addToFavoritesAC,
   deleteFromFavoritesAC,
+  quotesFetchSucceededAC,
+  quotesFetchFailedAC,
 };
+
