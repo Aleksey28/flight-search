@@ -1,7 +1,7 @@
 .header {
-  padding-top: 26px;
   display: flex;
   justify-content: flex-end;
+  padding: 31px 31px 0;
 }
 
 .button {
