@@ -18,7 +18,6 @@ function* fetchQuotes(action) {
     const year = date.getFullYear();
     const baseUrl = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com";
     const relativeUrl = "apiservices/browsequotes/v1.0/US/RUB/en-US";
-    debugger;
     const data = yield call(() => {
       return fetch(
         `${baseUrl}/${relativeUrl}/${departureAirport}-sky/${arrivalAirport}-sky/${year}-${month}-${day}`,
