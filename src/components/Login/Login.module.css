@@ -43,6 +43,10 @@
   color: #424242;
 }
 
+.label_error {
+  color: #eb1717;
+}
+
 .input {
   font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
   font-size: 16px;
@@ -71,8 +75,8 @@
   font-weight: 300;
   font-style: normal;
   line-height: 14px;
-  color: #eb1717;
   margin-bottom: 8px;
+  color: #eb1717;
 }
 
 .button {

@@ -31,7 +31,7 @@ const Login = ({ pageLogin, setInput, setLogged }) => {
 
   const onSubmit = () => {
     setLogged({ logged: true });
-    history.push('/');
+    history.push("/");
   };
 
   const initialValues = {
@@ -58,7 +58,8 @@ const Login = ({ pageLogin, setInput, setLogged }) => {
 
       <form onSubmit={formik.handleSubmit} noValidate className={classes.form}>
         <h1 className={classes.title}>Simple Flight Check</h1>
-        <label htmlFor="email" className={classes.label}> Логин: </label>
+        <label htmlFor="email"
+               className={cn(classes.label, { [classes.label_error]: formik.errors.email })}> Логин: </label>
         <input id="email"
                name="email"
                type="email"
@@ -68,7 +69,8 @@ const Login = ({ pageLogin, setInput, setLogged }) => {
         {formik.errors.email
          ? <span className={classes.error}>{formik.errors.email}</span>
          : null}
-        <label htmlFor="password" className={classes.label}> Пароль: </label>
+        <label htmlFor="password"
+               className={cn(classes.label, { [classes.label_error]: formik.errors.password })}> Пароль: </label>
         <input id="password"
                name="password"
                type="password"
