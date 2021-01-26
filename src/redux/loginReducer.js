@@ -15,7 +15,11 @@ const loginReducer = (state = initialState, action) => {
         [action.name]: action.value,
       };
     case SET_LOGGED:
-      localStorage.setItem("logged", action.logged);
+      if(action.logged) {
+        localStorage.setItem("logged", "You are perfect!");
+      } else {
+        localStorage.removeItem("logged")
+      }
       return {
         ...state,
         logged: action.logged,
